@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React表单-不可控组件</title>
+
+    <script src="./common/react.js"></script>
+    <script src="./common/react-dom.js"></script>
+    <script src="https://cdn.bootcss.com/babel-core/5.8.38/browser.min.js"></script>
+</head>
+
+
+<!-- 
+在input标签中不把value绑定到state上的就是不可控组件，它的数据不和state对应，
+所以在开发时会给自己挖很多坑，但是不可控组件并不是不可掌控
+-->
+
+<body>
+    <div id="demo"></div>
+
+    <script type="text/babel">
+        var MyForm = React.createClass({
+            handleChange : function(event){
+                var inputValue = ReactDOM.findDOMNode(this.refs.zch).value;
+                console.log(inputValue);
+            },
+            render : function(){
+                return (
+                    <div>
+                        <input type = "text" onChange = {this.handleChange} ref = "zch" defaultValue = "zch" />
+                    </div>
+                )
+            }
+        });
+
+        ReactDOM.render(
+            <MyForm/>,
+            document.getElementById('demo')
+        )
+    </script>
+</body>
+
+</html>
